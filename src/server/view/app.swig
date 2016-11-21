@@ -5,7 +5,7 @@
     {{ css('common') }}
   </head>
   <body>
-    {{ user }}
+    <div id="app">{{ isomorphicHtml|raw }}</div>
     {{ script('common') }}
     {{ script('app') }}
   </body>

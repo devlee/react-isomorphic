@@ -85,6 +85,7 @@ const webpackConfig = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common'
     }),
+    /* eslint-disable new-cap */
     new extractTextWebpackPlugin('[name].css'),
     new webpack.DefinePlugin({
       'process.env': {

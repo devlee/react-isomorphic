@@ -8,6 +8,7 @@ const viewMiddleware = async (ctx, next) => {
     },
     locals: ctx.locals || {}
   });
+
   await next();
 };
 

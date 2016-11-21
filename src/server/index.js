@@ -2,7 +2,7 @@ import Koa from 'koa';
 
 import middleware from './middleware';
 
-import router from './route'
+import router from './route';
 
 import config from '../../config';
 
@@ -21,4 +21,4 @@ export default () => {
   app.listen(serverConfig[env].port, () => {
     console.log(`app start at port ${serverConfig[env].port}`);
   });
-}
+};

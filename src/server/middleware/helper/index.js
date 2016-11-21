@@ -10,12 +10,12 @@ const locals = (host) => {
     css: (name) => {
       return env === 'development' ?
       `<link rel="stylesheet" src="//${host}:${port}${prefix}/${name}.css" />` :
-      ``; // TODO 自定义配置生产环境
+      'todo'; // TODO 自定义配置生产环境
     },
     script: (name) => {
       return env === 'development' ?
       `<script src="//${host}:${port}${prefix}/${name}.js"></script>` :
-      ``; // TODO 自定义配置生产环境
+      'todo'; // TODO 自定义配置生产环境
     }
   };
 };
@@ -23,6 +23,6 @@ const locals = (host) => {
 const helperMiddleware = async (ctx, next) => {
   ctx.locals = ctx.locals || locals(ctx.request.hostname);
   await next();
-}
+};
 
 export default helperMiddleware;
