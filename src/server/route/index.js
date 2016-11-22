@@ -1,30 +1,19 @@
 import Router from 'koa-router';
 
-import React from 'react';
+import middleware from '../middleware';
 
-import { renderToString } from 'react-dom/server';
+import data from './data';
 
-import { RouterContext, match } from 'react-router';
-
-import route from '../../client/route';
+import main from './main';
 
 const router = new Router();
 
-router.get('/', async ctx => {
-  let isomorphicHtml;
+router.use(middleware.secure)
+      .use(middleware.cookie)
+      .use(middleware.cache);
 
-  await match({
-    routes: route(),
-    location: ctx.req.url
-  }, (err, redirectLocation, renderProps) => {
-    isomorphicHtml = renderToString(
-      <RouterContext {...renderProps} />
-    );
-  });
+data(router);
 
-  ctx.body = await ctx.render('app', {
-    isomorphicHtml
-  });
-});
+main(router);
 
 export default router;

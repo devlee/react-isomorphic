@@ -6,10 +6,13 @@ import router from './route';
 
 import config from '../../config';
 
+import { env } from '../universal/env';
+
 export default () => {
   const app = new Koa();
   const serverConfig = config.server;
-  const env = process.env.NODE_ENV || 'development';
+
+  middleware.intl(app);
 
   app.use(middleware.error)
      .use(middleware.favicon)

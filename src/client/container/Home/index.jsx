@@ -1,9 +1,20 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
+import selector from '../../selector/home';
+
 class Home extends React.PureComponent {
   render() {
+    const { langPack } = this.props;
+
     return (
       <div className="container home-component">
+        <nav>
+          <ul>
+            <li>{ langPack.nav.home }</li>
+          </ul>
+        </nav>
         <h1>Home Component</h1>
         <section>
           <h2>SSR Speed Up</h2>
@@ -27,4 +38,8 @@ class Home extends React.PureComponent {
   }
 }
 
-export default Home;
+Home.propTypes = {
+  langPack: React.PropTypes.object
+};
+
+export default connect(selector)(Home);

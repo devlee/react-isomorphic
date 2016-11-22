@@ -1,11 +1,14 @@
 import config from '../../../../config';
 
+import { env } from '../../../universal/env';
+
 const assetConfig = config.asset;
 
+const port = assetConfig[env].port;
+
+const prefix = assetConfig[env].prefix;
+
 const locals = (host) => {
-  const env = process.env.NODE_ENV || 'development';
-  const port = assetConfig[env].port;
-  const prefix = assetConfig[env].prefix;
   return {
     css: (name) => {
       return env === 'development' ?
