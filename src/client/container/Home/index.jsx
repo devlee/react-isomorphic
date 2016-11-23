@@ -2,9 +2,17 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
+import { autobind } from 'core-decorators';
+
 import selector from '../../selector/home';
 
-class Home extends React.PureComponent {
+@connect(selector)
+@autobind
+export default class Home extends React.PureComponent {
+  static propTypes = {
+    langPack: React.PropTypes.object
+  }
+
   render() {
     const { langPack } = this.props;
 
@@ -37,9 +45,3 @@ class Home extends React.PureComponent {
     );
   }
 }
-
-Home.propTypes = {
-  langPack: React.PropTypes.object
-};
-
-export default connect(selector)(Home);
