@@ -6,6 +6,8 @@ import { RouterContext, match } from 'react-router';
 
 import { Provider } from 'react-intl-redux';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import configureStore from '../../../client/store';
 
 import route from '../../../client/route';
@@ -13,6 +15,8 @@ import route from '../../../client/route';
 import reducer from '../../../client/reducer';
 
 import { intlPack } from '../../../universal/intl';
+
+let injectTapEventPluginFlag = false;
 
 function getTasks(renderProps, store) {
   let tasks = [];
@@ -62,6 +66,11 @@ export default router => {
       const tasks = getTasks(matchProps, store);
 
       await Promise.all(tasks);
+
+      if (!injectTapEventPluginFlag) {
+        injectTapEventPlugin();
+        injectTapEventPluginFlag = true;
+      }
 
       isomorphicHtml = renderToString(
         <Provider store={store}>

@@ -2,7 +2,8 @@ module.exports = {
   locale: 'en',
   pack: {
     nav: {
-      home: 'Home'
+      home: 'Home',
+      about: 'About'
     }
   }
 };

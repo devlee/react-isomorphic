@@ -16,6 +16,7 @@
     "prefer-arrow-callback": 0,
     "no-console": 0,
     "no-param-reassign": ["error", { "props": false }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/react-in-jsx-scope": 0,
     "prefer-stateless-function": 0,
     "arrow-parens": 0,

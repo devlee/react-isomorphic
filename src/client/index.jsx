@@ -6,6 +6,8 @@ import { Router, browserHistory } from 'react-router';
 
 import { Provider } from 'react-intl-redux';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import { isDev } from '../universal/env';
 
 import configureStore from './store';
@@ -23,6 +25,8 @@ window.onload = () => {
   );
 
   const state = store.getState();
+
+  injectTapEventPlugin();
 
   render(
     <Provider store={store}>
