@@ -14,12 +14,26 @@ import selector from '../../selector/nav';
 @autobind
 export default class Nav extends React.PureComponent {
   static propTypes = {
-    langPack: React.PropTypes.object
+    langPack: React.PropTypes.object,
+    location: React.PropTypes.object
   }
 
-  @autobind
   state = {
-    value: 0
+    value: 'home'
+  }
+
+  componentWillMount() {
+    const { langPack, location } = this.props;
+
+    Object.keys(langPack.nav).map(item => {
+      if (location.pathname === '/' && item === 'home') {
+        this.changeTab(item);
+      } else if (location.pathname === item || location.pathname === `/${item}`) {
+        this.changeTab(item);
+      }
+
+      return item;
+    });
   }
 
   @autobind
@@ -32,14 +46,16 @@ export default class Nav extends React.PureComponent {
   render() {
     const { langPack } = this.props;
 
+    const { value } = this.state;
+
     return (
-      <Tabs onChange={this.changeTab} value={this.value}>
+      <Tabs onChange={this.changeTab} value={value}>
         {
           Object.keys(langPack.nav).map((item, i) => {
             return (
               <Tab
                 key={i}
-                value={i}
+                value={item}
                 label={langPack.nav[item]}
                 containerElement={
                   <Link to={item}>{langPack.nav[item]}</Link>
