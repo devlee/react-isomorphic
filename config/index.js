@@ -4,8 +4,11 @@ const intl = require('./intl');
 
 const server = require('./server');
 
+const siteName = 'devlee.io';
+
 module.exports = {
   asset: asset,
   intl: intl,
-  server: server
+  server: server,
+  siteName: siteName
 };

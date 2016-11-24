@@ -3,6 +3,7 @@
   <head>
     <title>{{ title || 'React Isomorphic Seed' }}</title>
     {{ css('common') }}
+    {{ css('app') }}
   </head>
   <body>
     <div id="app">{{ isomorphicHtml|raw }}</div>

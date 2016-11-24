@@ -10,6 +10,8 @@ import view from './view';
 
 import intl from './intl';
 
+import navigator from './navigator';
+
 // for koa-router
 
 import secure from './secure';
@@ -24,6 +26,7 @@ export default {
   favicon,
   helper,
   intl,
+  navigator,
   secure,
   cookie,
   cache

@@ -1,0 +1,4 @@
+/* fix normalize.css and material-ui */
+html [type="button"] {
+  -webkit-appearance: none;
+}

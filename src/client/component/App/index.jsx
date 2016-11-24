@@ -20,7 +20,7 @@ export default class App extends React.PureComponent {
 
   render() {
     const context = {
-      userAgent: 'all'
+      userAgent: navigator.userAgent || 'all'
     };
 
     const { location, children } = this.props;

@@ -8,6 +8,8 @@ const postcssImport = require('postcss-import');
 
 const postcssNested = require('postcss-nested');
 
+const postcssCssNext = require('postcss-cssnext');
+
 const extractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 const config = require('../../config');
@@ -34,7 +36,9 @@ const webpackConfig = {
   },
   entry: {
     common: [
-      'normalize.css'
+      'normalize.css',
+      './src/client/css/font-icons/style.css',
+      './src/client/css/common.pcss'
     ],
     app: [
       './src/client/index.jsx'
@@ -109,6 +113,7 @@ const webpackConfig = {
   postcss: () => {
     return [
       postcssImport(),
+      postcssCssNext({ browsers: ['> 0%'] }),
       postcssNested()
     ];
   }

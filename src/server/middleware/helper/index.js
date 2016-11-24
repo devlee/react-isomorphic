@@ -12,7 +12,7 @@ const locals = (host) => {
   return {
     css: (name) => {
       return env === 'development' ?
-      `<link rel="stylesheet" src="//${host}:${port}${prefix}/${name}.css" />` :
+      `<link rel="stylesheet" href="//${host}:${port}${prefix}/${name}.css" />` :
       'todo'; // TODO 自定义配置生产环境
     },
     script: (name) => {

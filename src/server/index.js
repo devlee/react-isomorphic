@@ -17,6 +17,7 @@ export default () => {
   app.use(middleware.error)
      .use(middleware.favicon)
      .use(middleware.helper)
+     .use(middleware.navigator)
      .use(middleware.view)
      .use(router.routes())
      .use(router.allowedMethods());
