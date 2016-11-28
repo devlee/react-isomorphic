@@ -8,6 +8,8 @@ import { autobind } from 'core-decorators';
 
 import { Drawer, Menu, MenuItem, AppBar, FlatButton } from 'material-ui';
 
+import muiThemeable from 'material-ui/styles/muiThemeable';
+
 import selector from '../../selector/nav';
 
 import styles from './index.pcss';
@@ -27,18 +29,21 @@ function isHomePage(item) {
 }
 
 @connect(selector)
+@muiThemeable()
 @autobind
 export default class Nav extends React.PureComponent {
   static propTypes = {
     langPack: React.PropTypes.object,
-    location: React.PropTypes.object
+    location: React.PropTypes.object,
+    muiTheme: React.PropTypes.object
   }
 
   state = {
     value: homePageKey,
     title: '',
     open: false,
-    color: white
+    color: white,
+    bgColor: white
   }
 
   componentWillMount() {
@@ -85,6 +90,7 @@ export default class Nav extends React.PureComponent {
     this.setState({
       value: v,
       color: white,
+      bgColor: white,
       title
     });
   }
@@ -92,7 +98,8 @@ export default class Nav extends React.PureComponent {
   @autobind
   toggleDrawer() {
     this.setState({
-      open: !this.state.open
+      open: !this.state.open,
+      bgColor: white
     });
   }
 
@@ -109,27 +116,32 @@ export default class Nav extends React.PureComponent {
     const g = Math.floor(Math.random() * 255);
     const b = Math.floor(Math.random() * 255);
     this.setState({
-      color: `rgba(${r}, ${g}, ${b}, 1)`
+      bgColor: `rgba(${r}, ${g}, ${b}, 1)`
     });
   }
 
   render() {
-    const { langPack } = this.props;
+    const { langPack, muiTheme } = this.props;
 
-    const { value, title, color } = this.state;
+    const { value, title, color, bgColor } = this.state;
 
     const primary = true;
 
     const flatButtonStyle = {
       height: 64,
       width: '100%',
-      backgroundColor: color,
+      backgroundColor: bgColor === white ? muiTheme.palette.primary1Color : bgColor,
       borderRadius: 0
     };
 
     const flatButtonLabelStyle = {
       fontSize: '20px',
-      color: 'white'
+      color: color
+    };
+
+    const menuStyle = {
+      height: 'calc(100% - 64px)',
+      overflowY: 'auto'
     };
 
     return (
@@ -142,9 +154,12 @@ export default class Nav extends React.PureComponent {
         />
         <Drawer
           docked={false}
-          width={280}
+          width={56 * 5}
+          containerStyle={{
+            overflow: 'hidden'
+          }}
           open={this.state.open}
-          onRequestChange={(open) => this.setState({ open, color: white })}
+          onRequestChange={(open) => this.setState({ open, bgColor: white })}
         >
           <FlatButton
             label={siteName}
@@ -153,7 +168,7 @@ export default class Nav extends React.PureComponent {
             labelStyle={flatButtonLabelStyle}
             onClick={this.randomColor}
           />
-          <Menu onChange={(e, v) => { this.changeValue(v); }} value={value}>
+          <Menu onChange={(e, v) => { this.changeValue(v); }} value={value} style={menuStyle}>
             {
               Object.keys(langPack.nav).map((item, i) => {
                 return (
