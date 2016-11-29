@@ -3,7 +3,8 @@ module.exports = {
   pack: {
     nav: {
       home: 'Home',
-      about: 'About'
+      about: 'About',
+      demo: 'Demo'
     }
   }
 };

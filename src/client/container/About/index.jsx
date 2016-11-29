@@ -3,7 +3,7 @@ import React from 'react';
 export default class About extends React.PureComponent {
   render() {
     return (
-      <div>
+      <div className="container about-component">
         <h1>About Component</h1>
         <section>
           <h2>SSR Speed Up</h2>

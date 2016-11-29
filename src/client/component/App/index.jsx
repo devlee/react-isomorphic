@@ -16,7 +16,7 @@ export default class App extends React.PureComponent {
   static propTypes = {
     children: React.PropTypes.object,
     location: React.PropTypes.object
-  }
+  };
 
   render() {
     const context = {

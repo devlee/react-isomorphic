@@ -36,7 +36,7 @@ export default class Nav extends React.PureComponent {
     langPack: React.PropTypes.object,
     location: React.PropTypes.object,
     muiTheme: React.PropTypes.object
-  }
+  };
 
   state = {
     value: homePageKey,
@@ -44,7 +44,7 @@ export default class Nav extends React.PureComponent {
     open: false,
     color: white,
     bgColor: white
-  }
+  };
 
   componentWillMount() {
     const { langPack, location } = this.props;
@@ -145,7 +145,7 @@ export default class Nav extends React.PureComponent {
     };
 
     return (
-      <div>
+      <div className="nav-component">
         <AppBar
           title={title}
           onLeftIconButtonTouchTap={this.toggleDrawer}
@@ -173,7 +173,7 @@ export default class Nav extends React.PureComponent {
               Object.keys(langPack.nav).map((item, i) => {
                 return (
                   <MenuItem key={i} value={item} onTouchTap={this.handleClose}>
-                    <Link to={item} className={styles.menuItemLink}>
+                    <Link to={`/${item}`} className={styles.menuItemLink}>
                       {langPack.nav[item]}
                     </Link>
                   </MenuItem>
