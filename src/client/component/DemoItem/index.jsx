@@ -4,7 +4,9 @@ import { Link } from 'react-router';
 
 import DemoItem1 from './item1';
 
-const DemoItems = [DemoItem1];
+import DemoItem2 from './item2';
+
+const DemoItems = [DemoItem1, DemoItem2];
 
 export default class DemoItem extends React.PureComponent {
   static propTypes = {
@@ -17,7 +19,11 @@ export default class DemoItem extends React.PureComponent {
     return (
       <div className="demo-item-wrapper-component">
         {
-          DemoItemComponent ? <DemoItemComponent /> : null
+          DemoItemComponent ? <DemoItemComponent /> : (
+            <div>
+              No Demo Item: {this.props.params.demoId}
+            </div>
+          )
         }
         <Link to="/demo">Back</Link>
       </div>

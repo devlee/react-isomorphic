@@ -11,7 +11,8 @@ export default class Demo extends React.PureComponent {
     return (
       <div className="container demo-component">
         <h1>Demo Component</h1>
-        <Link to="/demo/1">Demo1</Link>
+        <Link to="/demo/1">Demo1</Link>&nbsp;
+        <Link to="/demo/2">Demo2</Link>
         {this.props.children}
       </div>
     );

@@ -52,8 +52,8 @@ export default class Nav extends React.PureComponent {
     Object.keys(langPack.nav).map(item => {
       if (
         (location.pathname === '/' && isHomePage(item)) ||
-        location.pathname === item ||
-        location.pathname === `/${item}`
+        location.pathname.indexOf(item) === 0 ||
+        location.pathname.indexOf(`/${item}`) === 0
       ) {
         this.changeValue(item);
       }
@@ -69,7 +69,7 @@ export default class Nav extends React.PureComponent {
     let title = '';
 
     Object.keys(langPack.nav).map(item => {
-      if (v === item) {
+      if (v.indexOf(item) === 0) {
         title = langPack.nav[item];
       }
 
