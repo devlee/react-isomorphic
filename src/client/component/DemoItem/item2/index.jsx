@@ -61,7 +61,7 @@ export default class DemoItem2 extends React.Component {
                       x: (i === (this.state.queue.length - 1)) && this.state.inited ? 1 : 100
                     }}
                     style={{
-                      x: spring(100, { stiffness: 40, damping: 10 })
+                      x: spring(100, { stiffness: 100, damping: 20 })
                     }}
                   >
                     {

@@ -8,7 +8,7 @@ import styles from './index.pcss';
 
 import img from './React.js_logo.svg.png';
 
-const custom = { stiffness: 40, damping: 10 };
+const custom = { stiffness: 100, damping: 20 };
 
 const defaultState = {
   wrapperCurrent: {

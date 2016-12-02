@@ -5,12 +5,13 @@ import { StaggeredMotion, spring } from 'react-motion';
 import styles from './index.pcss';
 
 const matrix = [
-  0, 10, 20,
-  10, 20, 40,
-  20, 40, 80
+  0, 80, 160, 320,
+  80, 160, 320, 640
 ];
 
-const custom = { stiffness: 10, damping: 22 };
+const col = 4;
+
+const custom = { stiffness: 100, damping: 20 };
 
 const width = 100;
 
@@ -18,6 +19,7 @@ const margin = 10;
 
 export default class DemoItem1 extends React.PureComponent {
   render() {
+    /* eslint-disable no-bitwise */
     return (
       <div className="demo-item-content-component">
         <StaggeredMotion
@@ -45,15 +47,15 @@ export default class DemoItem1 extends React.PureComponent {
                       className={styles.item}
                       key={i}
                       style={{
-                        left: `${((i % 3) * (width + (margin * 2)))}px`,
-                        top: `${(Math.floor(i / 3) * (width + (margin * 2)))}px`
+                        left: `${((i % col) * (width + (margin * 2)))}px`,
+                        top: `${(~~(i / col) * (width + (margin * 2)))}px`
                       }}
                     >
                       <div
                         className={styles.subItem}
                         style={{
                           transform: `scale(${x > matrix[i] ? ((x - matrix[i]) / width) : 0})`,
-                          backgroundColor: `${x > (80 + matrix[i]) ? 'white' : '#00bcd4'}`
+                          backgroundColor: `${x > (80 + matrix[i]) ? '#00bcd4' : '#00bcd4'}`
                         }}
                       ></div>
                     </div>

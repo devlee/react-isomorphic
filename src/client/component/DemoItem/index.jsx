@@ -8,7 +8,9 @@ import DemoItem2 from './item2';
 
 import DemoItem3 from './item3';
 
-const DemoItems = [DemoItem1, DemoItem2, DemoItem3];
+import DemoItem4 from './item4';
+
+const DemoItems = [DemoItem1, DemoItem2, DemoItem3, DemoItem4];
 
 export default class DemoItem extends React.PureComponent {
   static propTypes = {
