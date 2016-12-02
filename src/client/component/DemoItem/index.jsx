@@ -10,7 +10,15 @@ import DemoItem3 from './item3';
 
 import DemoItem4 from './item4';
 
-const DemoItems = [DemoItem1, DemoItem2, DemoItem3, DemoItem4];
+import DemoItem5 from './item5';
+
+const DemoItems = [
+  DemoItem1,
+  DemoItem2,
+  DemoItem3,
+  DemoItem4,
+  DemoItem5
+];
 
 export default class DemoItem extends React.PureComponent {
   static propTypes = {
