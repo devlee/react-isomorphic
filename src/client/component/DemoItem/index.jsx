@@ -12,12 +12,15 @@ import DemoItem4 from './item4';
 
 import DemoItem5 from './item5';
 
+import DemoItem6 from './item6';
+
 const DemoItems = [
   DemoItem1,
   DemoItem2,
   DemoItem3,
   DemoItem4,
-  DemoItem5
+  DemoItem5,
+  DemoItem6
 ];
 
 export default class DemoItem extends React.PureComponent {

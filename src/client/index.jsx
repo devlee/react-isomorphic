@@ -18,10 +18,16 @@ import reducer from './reducer';
 
 window.onload = () => {
   /* eslint-disable no-underscore-dangle */
+  let tool;
+
+  if (isDev) {
+    tool = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+  }
+
   const store = configureStore(
     reducer,
     window.__INITIAL_STATE__,
-    isDev && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    tool
   );
 
   const state = store.getState();

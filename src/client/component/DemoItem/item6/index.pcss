@@ -1,0 +1,47 @@
+.area {
+  width: 600px;
+  height: 600px;
+  background-color: #eee;
+  text-align: center;
+  font-size: 0;
+  &:after {
+    content: ' ';
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+.list {
+  width: 240px;
+  height: 360px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  text-align: left;
+}
+
+.item {
+  display: inline-block;
+  width: 240px;
+  height: 120px;
+  background-color: #00bcd4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.12);
+
+  position: absolute;
+
+  transform-origin: 50% 50% 0px;
+
+  box-sizing: border-box;
+
+  font-size: 24px;
+
+  text-align: center;
+
+  line-height: 120px;
+
+  color: white;
+
+  user-select: none;
+}

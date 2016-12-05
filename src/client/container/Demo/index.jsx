@@ -16,6 +16,7 @@ export default class Demo extends React.PureComponent {
         <Link to="/demo/3">Demo3</Link>&nbsp;
         <Link to="/demo/4">Demo4</Link>&nbsp;
         <Link to="/demo/5">Demo5</Link>&nbsp;
+        <Link to="/demo/6">Demo6</Link>&nbsp;
         {this.props.children}
       </div>
     );
