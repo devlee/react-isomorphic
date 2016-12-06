@@ -2,21 +2,26 @@ import React from 'react';
 
 import { Link } from 'react-router';
 
+import styles from './index.pcss';
+
 export default class Demo extends React.PureComponent {
   static propTypes = {
     children: React.PropTypes.object
   };
 
   render() {
+    const arr = Array.from(new Array(7), (_, i) => i);
+
     return (
       <div className="container demo-component">
         <h1>Demo Component</h1>
-        <Link to="/demo/1">Demo1</Link>&nbsp;
-        <Link to="/demo/2">Demo2</Link>&nbsp;
-        <Link to="/demo/3">Demo3</Link>&nbsp;
-        <Link to="/demo/4">Demo4</Link>&nbsp;
-        <Link to="/demo/5">Demo5</Link>&nbsp;
-        <Link to="/demo/6">Demo6</Link>&nbsp;
+        {
+          arr.map((item, i) => {
+            return (
+              <Link className={styles.link} key={i} to={`/demo/${item + 1}`}>Demo{item + 1}</Link>
+            );
+          })
+        }
         {this.props.children}
       </div>
     );

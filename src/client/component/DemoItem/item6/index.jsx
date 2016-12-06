@@ -94,8 +94,8 @@ export default class DemoItem6 extends React.PureComponent {
               range.map((i, idx) => {
                 const target = isPressed && (lastPressedIdx === i)
                   ? {
-                    scale: spring(1.1, custom),
-                    shadow: spring(16, custom),
+                    scale: spring(1.05, custom),
+                    shadow: spring(4, custom),
                     y: mouseY
                   } : {
                     scale: spring(1, custom),
@@ -114,7 +114,7 @@ export default class DemoItem6 extends React.PureComponent {
                           boxShadow: `rgba(0, 0, 0, 0.2) 0px ${shadow}px ${2 * shadow}px 0px`,
                           transform: `translate3d(0, ${y}px, 0) scale(${scale})`,
                           WebkitTransform: `translate3d(0, ${y}px, 0) scale(${scale})`,
-                          zIndex: i === lastPressedIdx ? 99 : i,
+                          zIndex: i === lastPressedIdx ? count : i
                         };
 
                         if (shadow > 0.5) {

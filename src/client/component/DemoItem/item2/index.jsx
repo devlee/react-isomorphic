@@ -6,6 +6,8 @@ import { Motion, spring } from 'react-motion';
 
 import styles from './index.pcss';
 
+const custom = { stiffness: 100, damping: 20 };
+
 export default class DemoItem2 extends React.Component {
   state = {
     origin: Array.from(new Array(7), (_, i) => i),
@@ -61,7 +63,7 @@ export default class DemoItem2 extends React.Component {
                       x: (i === (this.state.queue.length - 1)) && this.state.inited ? 1 : 100
                     }}
                     style={{
-                      x: spring(100, { stiffness: 100, damping: 20 })
+                      x: spring(100, custom)
                     }}
                   >
                     {
