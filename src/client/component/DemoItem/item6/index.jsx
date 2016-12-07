@@ -67,8 +67,13 @@ export default class DemoItem6 extends React.PureComponent {
     if (isPressed) {
       const mouseY = pageY - disY;
       const currentRow = clamp(Math.round(mouseY / 120), 0, count - 1);
-      const newRange = reinsert(range, range.indexOf(lastPressedIdx), currentRow);
-      this.setState({ mouseY: mouseY, range: newRange });
+
+      if (currentRow !== range.indexOf(lastPressedIdx)) {
+        const newRange = reinsert(range, range.indexOf(lastPressedIdx), currentRow);
+        this.setState({ mouseY: mouseY, range: newRange });
+      } else {
+        this.setState({ mouseY: mouseY });
+      }
     }
   }
 
