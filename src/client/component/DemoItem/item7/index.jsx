@@ -19,7 +19,7 @@ export default class DemoItem7 extends React.PureComponent {
               ({ x }) => {
                 const style = {};
                 style.transform = `rotate(${x * (-1)}deg)`;
-                style.color = 'red';
+                style.color = '#00bcd4';
                 style.fontSize = '20px';
                 style.boxShadow = `${((x) / 90) * (-2)}px ${(((90 - x) / 90) * 3) + 1}px 6px rgba(0, 0, 0, 0.12)`;
 
@@ -31,8 +31,8 @@ export default class DemoItem7 extends React.PureComponent {
                       width: '100px',
                       height: '100px',
                       position: 'absolute',
-                      top: `${(x / 90) * 102 * (-1)}`,
-                      left: `${(x / 90) * 230 * (1)}`
+                      top: `${(x / 90) * 102 * (-1)}px`,
+                      left: `${(x / 90) * 230 * (1)}px`
                     }}
                   >
                     <div
