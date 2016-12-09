@@ -15,11 +15,26 @@ const emit = (event, data) => {
   ioInstance.emit(event, data);
 };
 
+const on = (event, cb) => {
+  ioInstance.on(event, data => {
+    log({
+      event,
+      data,
+      type: 'on'
+    });
+    cb(data);
+  });
+};
+
 socket.init = () => {
   ioInstance = io();
 
   emit('data', {
     devlee: 'io'
+  });
+
+  on('data', data => {
+    console.log(data);
   });
 };
 
