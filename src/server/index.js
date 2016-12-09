@@ -22,6 +22,8 @@ export default () => {
      .use(router.routes())
      .use(router.allowedMethods());
 
+  middleware.io(app);
+
   app.listen(serverConfig[env].port, () => {
     console.log(`app start at port ${serverConfig[env].port}`);
   });

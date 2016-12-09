@@ -12,6 +12,8 @@ import intl from './intl';
 
 import navigator from './navigator';
 
+import io from './io';
+
 // for koa-router
 
 import secure from './secure';
@@ -27,6 +29,7 @@ export default {
   helper,
   intl,
   navigator,
+  io,
   secure,
   cookie,
   cache

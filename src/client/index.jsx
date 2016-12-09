@@ -16,6 +16,8 @@ import route from './route';
 
 import reducer from './reducer';
 
+import socket from './socket';
+
 window.onload = () => {
   /* eslint-disable no-underscore-dangle */
   let tool;
@@ -23,6 +25,8 @@ window.onload = () => {
   if (isDev) {
     tool = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
   }
+
+  socket.init();
 
   const store = configureStore(
     reducer,
