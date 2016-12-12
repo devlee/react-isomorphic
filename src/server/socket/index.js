@@ -13,7 +13,11 @@ const emit = (event, data) => {
   ioInstance.broadcast(event, data);
 };
 
-socket.register = io => {
+const on = (event, cb) => {
+  ioInstance.on(event, cb);
+};
+
+socket.init = io => {
   if (ioInstance === null) {
     ioInstance = io;
   }
@@ -27,10 +31,11 @@ socket.register = io => {
     await next();
   });
 
-  io.on('data', (ctx, data) => {
-    console.log('SERVER: socket on `data` event ', data);
-    emit('data', { devlee: 'sio' });
-  });
+  socket.init = () => {};
 };
+
+socket.emit = emit;
+
+socket.on = on;
 
 export default socket;

@@ -10,7 +10,7 @@ export default class Demo extends React.PureComponent {
   };
 
   render() {
-    const arr = Array.from(new Array(8), (_, i) => i);
+    const arr = Array.from(new Array(9), (_, i) => i);
 
     return (
       <div className="container demo-component">

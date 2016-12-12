@@ -2,9 +2,9 @@ import io from 'socket.io-client';
 
 import log from '../../universal/socket-log';
 
-const socket = {};
-
 let ioInstance = null;
+
+const socket = {};
 
 const emit = (event, data) => {
   log({
@@ -29,13 +29,11 @@ const on = (event, cb) => {
 socket.init = () => {
   ioInstance = io();
 
-  emit('data', {
-    devlee: 'io'
-  });
-
-  on('data', data => {
-    console.log(data);
-  });
+  socket.init = () => {};
 };
+
+socket.emit = emit;
+
+socket.on = on;
 
 export default socket;

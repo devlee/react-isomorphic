@@ -8,8 +8,6 @@ import { Provider } from 'react-intl-redux';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import { isDev } from '../universal/env';
-
 import configureStore from './store';
 
 import route from './route';
@@ -20,18 +18,11 @@ import socket from './socket';
 
 window.onload = () => {
   /* eslint-disable no-underscore-dangle */
-  let tool;
-
-  if (isDev) {
-    tool = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-  }
-
   socket.init();
 
   const store = configureStore(
     reducer,
-    window.__INITIAL_STATE__,
-    tool
+    window.__INITIAL_STATE__
   );
 
   const state = store.getState();

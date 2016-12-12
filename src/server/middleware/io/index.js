@@ -7,7 +7,7 @@ const ioInstance = new IO();
 const io = app => {
   ioInstance.attach(app);
 
-  socket.register(ioInstance);
+  socket.init(ioInstance);
 };
 
 export default io;
