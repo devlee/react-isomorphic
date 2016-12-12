@@ -15,18 +15,15 @@ const composeEnhancers = isClient ?
   (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose) :
   compose;
 
-const logger = ReduxLogger();
-
 const epicMiddleware = createEpicMiddleware(epic);
 
 const configureStore = isDev ?
   composeEnhancers(applyMiddleware(
     epicMiddleware,
-    logger
+    ReduxLogger()
   ))(createStore) :
   applyMiddleware(
-    epicMiddleware,
-    logger
+    epicMiddleware
   )(createStore);
 
 export default configureStore;
