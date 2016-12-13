@@ -8,7 +8,7 @@ export const TEST_RESPONSE = 'TEST_RESPONSE';
 
 export const TEST_CANCEL = 'TEST_CANCEL';
 
-export const TEST_EMIT = 'TEST_EMIT';
+export const TEST_ERROR = 'TEST_ERROR';
 
 export function testRequest() {
   return {
@@ -28,8 +28,8 @@ export function testCancel() {
   };
 }
 
-export function testEmit() {
+export function testError() {
   return {
-    type: TEST_EMIT
+    type: TEST_ERROR
   };
 }

@@ -1,4 +1,4 @@
-import { TEST_REQUEST, TEST_RESPONSE, TEST_CANCEL, TEST_EMIT } from '../action';
+import { TEST_REQUEST, TEST_RESPONSE, TEST_CANCEL, TEST_ERROR } from '../action';
 
 export default function (state = {
   count: 0,
@@ -23,7 +23,7 @@ export default function (state = {
         fetching: false
       };
     }
-    case TEST_EMIT: {
+    case TEST_ERROR: {
       return {
         count: state.count,
         fetching: false
