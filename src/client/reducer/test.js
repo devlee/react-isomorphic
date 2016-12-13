@@ -1,17 +1,32 @@
-import { TEST_REQUEST, TEST_RESPONSE } from '../action';
+import { TEST_REQUEST, TEST_RESPONSE, TEST_CANCEL, TEST_EMIT } from '../action';
 
 export default function (state = {
-  count: 0
+  count: 0,
+  fetching: false
 }, action) {
   switch (action.type) {
     case TEST_REQUEST: {
       return {
-        count: state.count + 1
+        count: state.count,
+        fetching: true
       };
     }
     case TEST_RESPONSE: {
       return {
-        count: state.count - 1
+        count: state.count + 1,
+        fetching: false
+      };
+    }
+    case TEST_CANCEL: {
+      return {
+        count: state.count,
+        fetching: false
+      };
+    }
+    case TEST_EMIT: {
+      return {
+        count: state.count,
+        fetching: false
       };
     }
     default:

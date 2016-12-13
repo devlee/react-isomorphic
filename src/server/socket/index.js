@@ -22,6 +22,8 @@ socket.init = io => {
     ioInstance = io;
   }
 
+  socket.io = ioInstance;
+
   io.use(async (ctx, next) => {
     log({
       event: ctx.event,

@@ -6,6 +6,10 @@ export const TEST_REQUEST = 'TEST_REQUEST';
 
 export const TEST_RESPONSE = 'TEST_RESPONSE';
 
+export const TEST_CANCEL = 'TEST_CANCEL';
+
+export const TEST_EMIT = 'TEST_EMIT';
+
 export function testRequest() {
   return {
     type: TEST_REQUEST
@@ -15,5 +19,17 @@ export function testRequest() {
 export function testResponse() {
   return {
     type: TEST_RESPONSE
+  };
+}
+
+export function testCancel() {
+  return {
+    type: TEST_CANCEL
+  };
+}
+
+export function testEmit() {
+  return {
+    type: TEST_EMIT
   };
 }

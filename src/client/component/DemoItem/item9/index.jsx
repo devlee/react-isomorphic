@@ -6,27 +6,42 @@ import { autobind } from 'core-decorators';
 
 import demoItem9Selector from '../../../selector/demoItem9';
 
-import { testRequest } from '../../../action';
-
 class DemoItem9 extends React.PureComponent {
   static propTypes = {
     dispatch: React.PropTypes.func,
-    testCount: React.PropTypes.number
+    testCount: React.PropTypes.number,
+    testFetching: React.PropTypes.bool,
+    testRequest: React.PropTypes.func,
+    testCancel: React.PropTypes.func
   };
 
   @autobind
   handleClick() {
-    const { dispatch } = this.props;
-    dispatch(testRequest());
+    const { dispatch, testRequest, testCancel, testFetching } = this.props;
+
+    if (!testFetching) {
+      dispatch(testRequest());
+    } else {
+      dispatch(testCancel());
+    }
   }
 
   render() {
-    const { testCount } = this.props;
+    const { testCount, testFetching } = this.props;
     return (
       <div className="demo-item-content-component">
-        <h2>redux + rxjs</h2>
+        <h2>redux + rxjs + socket.io</h2>
+        <div>
+          {
+            testFetching ? <span>fetching</span> : <span>done</span>
+          }
+        </div>
         <div>value:{testCount}</div>
-        <button onClick={this.handleClick}>click me</button>
+        <button onClick={this.handleClick}>
+          {
+            !testFetching ? <span>Request</span> : <span>Cancel</span>
+          }
+        </button>
       </div>
     );
   }

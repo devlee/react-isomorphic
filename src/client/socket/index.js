@@ -1,5 +1,7 @@
 import io from 'socket.io-client';
 
+import onInit from './on';
+
 import log from '../../universal/socket-log';
 
 let ioInstance = null;
@@ -28,6 +30,10 @@ const on = (event, cb) => {
 
 socket.init = () => {
   ioInstance = io();
+
+  socket.io = ioInstance;
+
+  onInit();
 
   socket.init = () => {};
 };
