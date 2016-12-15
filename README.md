@@ -7,7 +7,7 @@ React Isomorphic
 安装依赖包
 > yarn install
 
-全局安装nodemon、eslint
+全局安装nodemon、eslint、cross-env
 > yarn global add nodemon eslint
 
 打包client文件

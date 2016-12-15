@@ -16,6 +16,8 @@ import styles from './index.pcss';
 
 import { siteName } from '../../../../config';
 
+import { isPwa } from '../../../universal/env';
+
 function openGithub() {
   window.open('https://github.com');
 }
@@ -144,10 +146,12 @@ export default class Nav extends React.PureComponent {
       overflowY: 'auto'
     };
 
+    const pwaStr = isPwa ? ' [PWA mode]' : '';
+
     return (
       <div className="nav-component">
         <AppBar
-          title={title}
+          title={title + pwaStr}
           onLeftIconButtonTouchTap={this.toggleDrawer}
           onRightIconButtonTouchTap={openGithub}
           iconClassNameRight="muidocs-icon-custom-github"

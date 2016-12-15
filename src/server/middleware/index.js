@@ -14,6 +14,8 @@ import navigator from './navigator';
 
 import io from './io';
 
+import serverStatic from './static';
+
 // for koa-router
 
 import secure from './secure';
@@ -30,6 +32,7 @@ export default {
   intl,
   navigator,
   io,
+  static: serverStatic,
   secure,
   cookie,
   cache

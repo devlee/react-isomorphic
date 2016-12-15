@@ -16,6 +16,7 @@ export default () => {
 
   app.use(middleware.error)
      .use(middleware.favicon)
+     .use(middleware.static)
      .use(middleware.helper)
      .use(middleware.navigator)
      .use(middleware.view)

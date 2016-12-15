@@ -18,11 +18,13 @@ const rootFolder = path.resolve(__dirname, '../..');
 
 const env = process.env.NODE_ENV || 'development';
 
+const pwa = Boolean(process.env.PWA);
+
 const assetConfig = config.asset;
 
 const assetConfigPort = assetConfig[env].port;
 
-const assetPath = `//${ip.address()}:${assetConfigPort}/asset/`;
+const assetPath = pwa ? '/asset/' : `//${ip.address()}:${assetConfigPort}/asset/`;
 
 const webpackConfig = {
   context: rootFolder,
@@ -46,7 +48,7 @@ const webpackConfig = {
   },
   output: {
     publicPath: assetPath,
-    path: path.resolve(rootFolder, './dist/client'),
+    path: path.resolve(rootFolder, './static/asset'),
     filename: '[name].js',
     chunkFilename: '[name].js'
   },
@@ -93,7 +95,8 @@ const webpackConfig = {
     new extractTextWebpackPlugin('[name].css'),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(env)
+        NODE_ENV: JSON.stringify(env),
+        PWA: JSON.stringify(pwa)
       }
     })
   ],

@@ -1,10 +1,12 @@
 import config from '../../../../config';
 
-import { env } from '../../../universal/env';
+import { env, isPwa } from '../../../universal/env';
 
 const assetConfig = config.asset;
 
-const port = assetConfig[env].port;
+const serverConfig = config.server;
+
+const port = isPwa ? serverConfig[env].port : assetConfig[env].port;
 
 const prefix = assetConfig[env].prefix;
 

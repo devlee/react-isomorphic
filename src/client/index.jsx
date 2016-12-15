@@ -16,8 +16,12 @@ import reducer from './reducer';
 
 import socket from './socket';
 
+import sw from './service-worker';
+
 window.onload = () => {
   /* eslint-disable no-underscore-dangle */
+  sw.init();
+
   socket.init();
 
   const store = configureStore(

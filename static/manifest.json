@@ -1,0 +1,13 @@
+{
+  "name": "React Isomorphic PWA",
+  "short_name": "react pwa",
+  "icons": [{
+    "src": "favicon.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }],
+  "start_url": "/?utm_source=homescreen",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00bcd4"
+}

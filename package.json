@@ -10,6 +10,8 @@
     "test": "eslint ./ --ext .js --ext .jsx",
     "devc": "webpack-dev-server --config config/webpack/client.js -d --hot --color --inline",
     "devs": "webpack --watch --config config/webpack/server.js --colors --display-error-details",
+    "devcp": "cross-env PWA=true webpack --watch --config config/webpack/client.js --colors --display-error-details",
+    "devsp": "cross-env PWA=true webpack --watch --config config/webpack/server.js --colors --display-error-details",
     "serve": "nodemon index.js"
   },
   "dependencies": {
@@ -38,8 +40,10 @@
     "koa-locale": "^1.2.0",
     "koa-router": "next",
     "koa-socket": "^4.4.0",
+    "koa-static": "next",
     "material-ui": "^0.16.4",
     "normalize.css": "^5.0.0",
+    "offline-plugin": "^4.5.3",
     "postcss": "^5.2.5",
     "postcss-cssnext": "^2.8.0",
     "postcss-import": "^8.2.0",
