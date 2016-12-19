@@ -20,11 +20,7 @@ import ssl from './ssl';
 
 // for koa-router
 
-import secure from './secure';
-
 import cookie from './cookie';
-
-import cache from './cache';
 
 export default {
   error,
@@ -36,7 +32,5 @@ export default {
   io,
   static: serverStatic,
   ssl,
-  secure,
-  cookie,
-  cache
+  cookie
 };

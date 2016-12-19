@@ -91,11 +91,13 @@ export default router => {
       ctx.body = await ctx.render('app', {
         isomorphicHtml,
         isomorphicState: state,
-        locale: 'en'
+        locale
       });
     } else {
       console.error('there was no route found matching the given location');
       ctx.redirect('/');
+      ctx.status = 301;
+      ctx.body = 'Redirecting to home page';
     }
   });
 };

@@ -8,9 +8,7 @@ import main from './main';
 
 const router = new Router();
 
-router.use(middleware.secure)
-      .use(middleware.cookie)
-      .use(middleware.cache);
+router.use(middleware.cookie);
 
 data(router);
 
