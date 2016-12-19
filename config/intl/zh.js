@@ -1,6 +1,6 @@
 module.exports = {
   locale: 'zh',
-  pack: {
+  messages: {
     nav: {
       home: '首页',
       about: '关于'

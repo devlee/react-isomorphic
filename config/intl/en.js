@@ -1,6 +1,6 @@
 module.exports = {
   locale: 'en',
-  pack: {
+  messages: {
     nav: {
       home: 'Home',
       about: 'About',

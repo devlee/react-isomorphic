@@ -45,7 +45,11 @@ export default router => {
     let matchProps;
     let isomorphicHtml;
 
-    const locale = ctx.getLocaleFromHeader() || 'zh';
+    let locale = ctx.getLocaleFromHeader() || 'en';
+
+    if (!intlPack[locale]) {
+      locale = 'en';
+    }
 
     const store = configureStore(reducer, {
       intl: intlPack[locale]

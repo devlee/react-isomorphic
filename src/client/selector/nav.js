@@ -6,7 +6,7 @@ export default createSelector(
   intlSelector,
   intl => {
     return {
-      langPack: intl.pack
+      langPack: intl.messages
     };
   }
 );
