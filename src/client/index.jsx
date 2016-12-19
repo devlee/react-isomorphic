@@ -14,7 +14,7 @@ import route from './route';
 
 import reducer from './reducer';
 
-import socket from './socket';
+// import socket from './socket'; // TODO SSL
 
 import sw from './service-worker';
 
@@ -22,7 +22,7 @@ window.onload = () => {
   /* eslint-disable no-underscore-dangle */
   sw.init();
 
-  socket.init();
+  // socket.init(); // TODO SSL
 
   const store = configureStore(
     reducer,

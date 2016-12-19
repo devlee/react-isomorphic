@@ -24,7 +24,9 @@ const assetConfig = config.asset;
 
 const assetConfigPort = assetConfig[env].port;
 
-const assetPath = pwa ? '/asset/' : `//${ip.address()}:${assetConfigPort}/asset/`;
+const assetConfigPrefix = assetConfig[env].prefix;
+
+const assetPath = pwa ? `${assetConfigPrefix}` : `//${ip.address()}:${assetConfigPort}${assetConfigPrefix}`;
 
 const webpackConfig = {
   context: rootFolder,
@@ -48,7 +50,7 @@ const webpackConfig = {
   },
   output: {
     publicPath: assetPath,
-    path: path.resolve(rootFolder, './static/asset'),
+    path: path.resolve(rootFolder, './build'),
     filename: '[name].js',
     chunkFilename: '[name].js'
   },
@@ -91,6 +93,7 @@ const webpackConfig = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common'
     }),
+    new webpack.optimize.DedupePlugin(),
     /* eslint-disable new-cap */
     new extractTextWebpackPlugin('[name].css'),
     new webpack.DefinePlugin({

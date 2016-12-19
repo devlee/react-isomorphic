@@ -1,7 +1,7 @@
 module.exports = {
   development: {
     port: 8066,
-    prefix: '/asset'
+    prefix: '/'
   },
   production: {
     port: 8066

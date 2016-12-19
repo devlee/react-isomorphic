@@ -1,8 +1,10 @@
 module.exports = {
   development: {
-    port: 8077
+    port: 80,
+    ports: 443
   },
   production: {
-    port: 8077
+    port: 80,
+    ports: 443
   }
 };
