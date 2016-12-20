@@ -14,7 +14,7 @@ import router from './route';
 
 import config from '../../config';
 
-import { env } from '../universal/env';
+import { env, isPwa } from '../universal/env';
 
 const rootFolder = path.resolve(__dirname, '../..');
 
@@ -22,20 +22,27 @@ export default () => {
   const httpsApp = new Koa();
   const httpApp = new Koa();
   const serverConfig = config.server;
-  const options = {
-    key: fs.readFileSync(path.resolve(rootFolder, './config/server/ssl/devlee.io.key')),
-    cert: fs.readFileSync(path.resolve(rootFolder, './config/server/ssl/devlee.io.crt'))
-  };
+  let app;
+  let options;
 
-  httpApp.use(ctx => {
-    ctx.status = 301;
-    ctx.redirect(`https://${ctx.hostname}:${serverConfig[env].ports}${ctx.path}${ctx.search}`);
-    ctx.body = 'Redirecting to https';
-  });
+  if (isPwa) {
+    app = httpsApp;
+    options = {
+      key: fs.readFileSync(path.resolve(rootFolder, './config/server/ssl/devlee.io.key')),
+      cert: fs.readFileSync(path.resolve(rootFolder, './config/server/ssl/devlee.io.crt'))
+    };
+    httpApp.use(ctx => {
+      ctx.status = 301;
+      ctx.redirect(`https://${ctx.hostname}:${serverConfig[env].ports}${ctx.path}${ctx.search}`);
+      ctx.body = 'Redirecting to https';
+    });
+  } else {
+    app = httpApp;
+  }
 
-  middleware.intl(httpsApp);
+  middleware.intl(app);
 
-  httpsApp.use(middleware.error)
+  app.use(middleware.error)
      .use(middleware.ssl)
      .use(middleware.favicon)
      .use(middleware.static)
@@ -45,18 +52,20 @@ export default () => {
      .use(router.routes())
      .use(router.allowedMethods());
 
-  middleware.io(httpsApp);
+  middleware.io(app);
 
   http.createServer(httpApp.callback()).listen(serverConfig[env].port, () => {
     console.log(`http app start at port ${serverConfig[env].port}`);
   });
 
-  https.createServer(
-    options,
-    httpsApp.callback()
-  ).listen(serverConfig[env].ports,
-    () => {
-      console.log(`https app start at port ${serverConfig[env].ports}`);
-    }
-  );
+  if (isPwa) {
+    https.createServer(
+      options,
+      httpsApp.callback()
+    ).listen(serverConfig[env].ports,
+      () => {
+        console.log(`https app start at port ${serverConfig[env].ports}`);
+      }
+    );
+  }
 };

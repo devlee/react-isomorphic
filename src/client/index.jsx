@@ -18,9 +18,13 @@ import reducer from './reducer';
 
 import sw from './service-worker';
 
+import { isPwa } from '../universal/env';
+
 window.onload = () => {
   /* eslint-disable no-underscore-dangle */
-  sw.init();
+  if (isPwa) {
+    sw.init();
+  }
 
   // socket.init(); // TODO SSL
 

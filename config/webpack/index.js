@@ -93,7 +93,6 @@ const webpackConfig = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common'
     }),
-    new webpack.optimize.DedupePlugin(),
     /* eslint-disable new-cap */
     new extractTextWebpackPlugin('[name].css'),
     new webpack.DefinePlugin({

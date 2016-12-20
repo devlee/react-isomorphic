@@ -16,13 +16,6 @@ delete webpackConfig.externals;
 
 webpackConfig.plugins = webpackConfig.plugins || [];
 
-webpackConfig.plugins.unshift(
-  new CopyWebpackPlugin([{
-    from: path.resolve(rootFolder, './static'),
-    to: path.resolve(rootFolder, './build')
-  }])
-);
-
 webpackConfig.plugins.push(
   new webpack.DefinePlugin({
     'process.env': {
@@ -32,6 +25,12 @@ webpackConfig.plugins.push(
 );
 
 if (pwa) {
+  webpackConfig.plugins.unshift(
+    new CopyWebpackPlugin([{
+      from: path.resolve(rootFolder, './static'),
+      to: path.resolve(rootFolder, './build')
+    }])
+  );
   webpackConfig.plugins.push(
     new OfflinePlugin({
       ServiceWorker: {
