@@ -14,7 +14,7 @@ import route from './route';
 
 import reducer from './reducer';
 
-// import socket from './socket'; // TODO SSL
+import socket from './socket'; // TODO SSL
 
 import sw from './service-worker';
 
@@ -26,7 +26,7 @@ window.onload = () => {
     sw.init();
   }
 
-  // socket.init(); // TODO SSL
+  socket.init(); // TODO SSL
 
   const store = configureStore(
     reducer,

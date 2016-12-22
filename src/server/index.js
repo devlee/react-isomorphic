@@ -19,13 +19,14 @@ import { env, isPwa } from '../universal/env';
 const rootFolder = path.resolve(__dirname, '../..');
 
 export default () => {
-  const httpsApp = new Koa();
+  let httpsApp;
   const httpApp = new Koa();
   const serverConfig = config.server;
   let app;
   let options;
 
   if (isPwa) {
+    httpsApp = new Koa();
     app = httpsApp;
     options = {
       key: fs.readFileSync(path.resolve(rootFolder, './config/server/ssl/devlee.io.key')),
@@ -52,20 +53,24 @@ export default () => {
      .use(router.routes())
      .use(router.allowedMethods());
 
-  middleware.io(app);
-
-  http.createServer(httpApp.callback()).listen(serverConfig[env].port, () => {
-    console.log(`http app start at port ${serverConfig[env].port}`);
-  });
-
   if (isPwa) {
-    https.createServer(
+    http.createServer(httpApp.callback()).listen(serverConfig[env].port, () => {
+      console.log(`http app start at port ${serverConfig[env].port}`);
+    });
+    const httpsServer = https.createServer(
       options,
       httpsApp.callback()
-    ).listen(serverConfig[env].ports,
+    );
+    middleware.io(httpsServer);
+    httpsServer.listen(serverConfig[env].ports,
       () => {
         console.log(`https app start at port ${serverConfig[env].ports}`);
       }
     );
+  } else {
+    middleware.io(app);
+    app.listen(serverConfig[env].port, () => {
+      console.log(`http app start at port ${serverConfig[env].port}`);
+    });
   }
 };
