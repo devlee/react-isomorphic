@@ -1,5 +1,7 @@
 import log from '../../universal/socket-log';
 
+import { isPwa } from '../../universal/env';
+
 const socket = {};
 
 let ioInstance = null;
@@ -10,7 +12,12 @@ const emit = (event, data) => {
     data,
     type: 'emit'
   });
-  ioInstance.broadcast(event, data);
+
+  if (isPwa) {
+    ioInstance.emit(event, data);
+  } else {
+    ioInstance.broadcast(event, data);
+  }
 };
 
 const on = (event, cb) => {
@@ -18,22 +25,34 @@ const on = (event, cb) => {
 };
 
 socket.init = io => {
-  if (ioInstance === null) {
+  if (ioInstance === null || isPwa) {
     ioInstance = io;
   }
 
   socket.io = ioInstance;
 
-  io.use(async (ctx, next) => {
-    log({
-      event: ctx.event,
-      data: ctx.data,
-      type: 'on'
+  if (isPwa) {
+    io.use(async (ctx, next) => {
+      if (ctx && ctx.length > 1) {
+        log({
+          event: ctx[0],
+          data: ctx[1],
+          type: 'on'
+        });
+      }
+      await next();
     });
-    await next();
-  });
-
-  socket.init = () => {};
+  } else {
+    io.use(async (ctx, next) => {
+      log({
+        event: ctx.event,
+        data: ctx.data,
+        type: 'on'
+      });
+      await next();
+    });
+    socket.init = () => {};
+  }
 };
 
 socket.emit = emit;

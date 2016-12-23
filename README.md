@@ -10,10 +10,10 @@ React Isomorphic
 全局安装nodemon、eslint、cross-env
 > yarn global add nodemon eslint
 
-打包client文件
+打包client文件(PWA mode: devcp)
 > yarn run devc
 
-打包server文件
+打包server文件(PWA mode: devsp)
 > yarn run devs
 
 启动server
