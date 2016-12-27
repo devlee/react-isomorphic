@@ -4,7 +4,7 @@ import fs from 'fs';
 
 import http from 'http';
 
-import https from 'https';
+import spdy from 'spdy';
 
 import path from 'path';
 
@@ -57,16 +57,14 @@ export default () => {
     http.createServer(httpApp.callback()).listen(serverConfig[env].port, () => {
       console.log(`http app start at port ${serverConfig[env].port}`);
     });
-    const httpsServer = https.createServer(
+    const httpsServer = spdy.createServer(
       options,
       httpsApp.callback()
     );
     middleware.io(httpsServer);
-    httpsServer.listen(serverConfig[env].ports,
-      () => {
-        console.log(`https app start at port ${serverConfig[env].ports}`);
-      }
-    );
+    httpsServer.listen(serverConfig[env].ports, () => {
+      console.log(`https app start at port ${serverConfig[env].ports}`);
+    });
   } else {
     middleware.io(app);
     app.listen(serverConfig[env].port, () => {

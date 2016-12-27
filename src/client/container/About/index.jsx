@@ -22,6 +22,12 @@ export default class About extends React.PureComponent {
         <section>
           <h2>RxJS + React + Redux</h2>
         </section>
+        <section>
+          <h2>Progressive Web Apps(PWA)</h2>
+        </section>
+        <section>
+          <h2>HTTP/HTTPS/HTTP2/WS/WSS</h2>
+        </section>
       </div>
     );
   }
