@@ -1,5 +1,7 @@
 import views from 'co-views';
 
+import stream from './stream';
+
 const viewMiddleware = async (ctx, next) => {
   ctx.render = ctx.render || views('src/server/view', {
     default: 'swig',
@@ -8,6 +10,8 @@ const viewMiddleware = async (ctx, next) => {
     },
     locals: ctx.locals || {}
   });
+
+  ctx.Stream = stream;
 
   await next();
 };

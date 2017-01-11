@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Readable } from 'stream';
+
 import { renderToString } from 'react-dom/server';
 
 import { RouterContext, match } from 'react-router';
@@ -66,33 +68,37 @@ export default router => {
       matchProps = renderProps;
     });
 
-    if (matchProps) {
-      const tasks = getTasks(matchProps, store);
-
-      await Promise.all(tasks);
-
+    if (matchError) {
+      throw matchError;
+    } else if (matchRedirect) {
+      ctx.redirect(matchRedirect.pathname + matchRedirect.search);
+    } else if (matchProps) {
       if (!injectTapEventPluginFlag) {
         injectTapEventPlugin();
         injectTapEventPluginFlag = true;
       }
+
+      const tasks = getTasks(matchProps, store);
+
+      await Promise.all(tasks);
 
       isomorphicHtml = renderToString(
         <Provider store={store}>
           <RouterContext {...matchProps} />
         </Provider>
       );
-    }
 
-    if (matchError) {
-      throw matchError;
-    } else if (matchRedirect) {
-      ctx.redirect(matchRedirect.pathname + matchRedirect.search);
-    } else if (isomorphicHtml) {
-      ctx.body = await ctx.render('app', {
-        isomorphicHtml,
-        isomorphicState: state,
-        locale
-      });
+      const stream = new Readable();
+      /* eslint-disable no-underscore-dangle */
+      stream._read = () => {};
+      stream.push(isomorphicHtml);
+      stream.push(null);
+      ctx.type = 'html';
+      ctx.body = stream.pipe(new ctx.Stream({
+        locale,
+        ...ctx.locals,
+        isomorphicState: store.getState()
+      }));
     } else {
       console.error('there was no route found matching the given location');
       ctx.redirect('/');
