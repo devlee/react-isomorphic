@@ -2,7 +2,7 @@ import { env } from './env';
 
 let defDomain = 'localhost';
 
-defDomain = (env === 'production' ? 'xxx' : defDomain);
+defDomain = (env === 'production' ? 'devlee.io' : defDomain);
 
 const domain = defDomain;
 
