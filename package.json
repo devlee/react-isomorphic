@@ -73,6 +73,7 @@
     "universal-webpack": "^0.1.41",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.0.0",
     "webpack-node-externals": "^1.5.4"
   },
   "devDependencies": {
